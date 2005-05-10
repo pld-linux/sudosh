@@ -2,7 +2,7 @@ Summary:	sudo shell
 Summary(pl):	Pow³oka sudo
 Name:		sudosh
 Version:	1.6.1
-Release:	0.1
+Release:	0.2
 License:	Open Software License v2.0
 Group:		Applications/Shells
 Source0:	http://dl.sourceforge.net/sudosh/%{name}-%{version}.tar.gz
@@ -41,6 +41,8 @@ wej¶cie i wyj¶cie, wej¶cie z klawiatury i informacje o czasie - tak,
 %install
 rm -rf $RPM_BUILD_ROOT
 
+install -d $RPM_BUILD_ROOT/var/log/%{name}
+
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
@@ -53,3 +55,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/*
 %{_mandir}/man8/*
+%attr(733,root,root) %dir /var/log/%{name}
