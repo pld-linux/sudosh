@@ -7,14 +7,7 @@ Group:		Applications/Shells
 Source0:	http://dl.sourceforge.net/sudosh/%{name}-%{version}.tar.gz
 # Source0-md5:	11f1002c557098e65dccd03a0536ff00
 URL:		http://sourceforge.net/projects/sudosh
-#BuildRequires:	automake
-#BuildRequires:	-
-#Requires:	-
-#Provides:	-
-#Obsoletes:	-
-#Conflicts:	-
-#BuildArch:	noarch
-#ExclusiveArch:  %{ix86}
+Requires:	sudo
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
