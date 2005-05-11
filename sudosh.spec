@@ -2,7 +2,7 @@ Summary:	sudo shell
 Summary(pl):	Pow³oka sudo
 Name:		sudosh
 Version:	1.6.1
-Release:	0.2
+Release:	0.3
 License:	Open Software License v2.0
 Group:		Applications/Shells
 Source0:	http://dl.sourceforge.net/sudosh/%{name}-%{version}.tar.gz
@@ -55,4 +55,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/*
 %{_mandir}/man8/*
-%attr(733,root,root) %dir /var/log/%{name}
+%attr(1733,root,root) %dir /var/log/%{name}
