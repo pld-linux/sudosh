@@ -60,7 +60,6 @@ if [ ! -f /etc/shells ]; then
 else
 	grep -q '^%{_bindir}/sudosh$' /etc/shells || echo "%{_bindir}/sudosh" >> /etc/shells
 fi
-[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} > /dev/null 2>&1
 
 %preun
 if [ "$1" = "0" ]; then
@@ -68,9 +67,6 @@ if [ "$1" = "0" ]; then
 	grep -v '^%{_bindir}/sudosh$' /etc/shells > /etc/shells.new
 	mv -f /etc/shells.new /etc/shells
 fi
-
-%postun
-[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} > /dev/null 2>&1
 
 %files
 %defattr(644,root,root,755)
