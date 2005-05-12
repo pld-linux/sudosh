@@ -2,14 +2,18 @@ Summary:	sudo shell
 Summary(pl):	Pow³oka sudo
 Name:		sudosh
 Version:	1.6.2
-Release:	0.1
+Release:	0.2
 License:	Open Software License v2.0
 Group:		Applications/Shells
 Source0:	http://dl.sourceforge.net/sudosh/%{name}-%{version}.tar.gz
 # Source0-md5:	eaae26de9184094f8d828f591ee519c0
 URL:		http://sourceforge.net/projects/sudosh/
+Requires(post,preun):	grep
+Requires(preun):	fileutils
 Requires:	sudo
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_bindir		/bin
 
 %description
 sudosh is a filter that takes advantage of PTY devices in order to sit
@@ -48,6 +52,25 @@ install -d $RPM_BUILD_ROOT/var/log/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post
+umask 022
+if [ ! -f /etc/shells ]; then
+	echo "%{_bindir}/sudosh" >> /etc/shells
+else
+	grep -q '^%{_bindir}/sudosh$' /etc/shells || echo "%{_bindir}/sudosh" >> /etc/shells
+fi
+[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} > /dev/null 2>&1
+
+%preun
+if [ "$1" = "0" ]; then
+	umask 022
+	grep -v '^%{_bindir}/sudosh$' /etc/shells > /etc/shells.new
+	mv -f /etc/shells.new /etc/shells
+fi
+
+%postun
+[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} > /dev/null 2>&1
 
 %files
 %defattr(644,root,root,755)
