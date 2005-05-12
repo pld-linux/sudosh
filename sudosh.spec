@@ -9,6 +9,7 @@ Source0:	http://dl.sourceforge.net/sudosh/%{name}-%{version}.tar.gz
 # Source0-md5:	eaae26de9184094f8d828f591ee519c0
 URL:		http://sourceforge.net/projects/sudosh/
 Requires(post,preun):	sed >= 4.0
+Requires(post):		grep
 Requires:	sudo
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
