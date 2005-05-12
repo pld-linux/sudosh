@@ -8,8 +8,7 @@ Group:		Applications/Shells
 Source0:	http://dl.sourceforge.net/sudosh/%{name}-%{version}.tar.gz
 # Source0-md5:	eaae26de9184094f8d828f591ee519c0
 URL:		http://sourceforge.net/projects/sudosh/
-Requires(post,preun):	grep
-Requires(preun):	fileutils
+Requires(post,preun):	sed >= 4.0
 Requires:	sudo
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -56,22 +55,19 @@ rm -rf $RPM_BUILD_ROOT
 %post
 umask 022
 if [ ! -f /etc/shells ]; then
-	echo "%{_bindir}/sudosh" >> /etc/shells
+	echo '%{_bindir}/sudosh' >> /etc/shells
 else
-	grep -q '^%{_bindir}/sudosh$' /etc/shells || echo "%{_bindir}/sudosh" >> /etc/shells
+	grep -q '^%{_bindir}/sudosh$' /etc/shells || echo '%{_bindir}/sudosh' >> /etc/shells
 fi
 
 %preun
 if [ "$1" = "0" ]; then
-	umask 022
-	grep -v '^%{_bindir}/sudosh$' /etc/shells > /etc/shells.new
-	mv -f /etc/shells.new /etc/shells
+	sed -i -e '/^%{_bindir}/sudosh$/d' /etc/shells
 fi
 
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS COPYING ChangeLog NEWS PLATFORMS README
 %attr(755,root,root) %{_bindir}/*
-%{_mandir}/man1/*
-%{_mandir}/man8/*
+%{_mandir}/man[18]/*
 %attr(1733,root,root) %dir /var/log/%{name}
