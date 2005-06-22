@@ -7,7 +7,11 @@ License:	Open Software License v2.0
 Group:		Applications/Shells
 Source0:	http://dl.sourceforge.net/sudosh/%{name}-%{version}.tar.gz
 # Source0-md5:	7121efdac817e4a27111869f27fabea0
+Patch0:		%{name}-DESTDIR.patch
 URL:		http://sourceforge.net/projects/sudosh/
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool
 Requires(post,preun):	sed >= 4.0
 Requires(post):	grep
 Requires:	sudo
@@ -37,8 +41,13 @@ wej¶cie i wyj¶cie, wej¶cie z klawiatury i informacje o czasie - tak,
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
+%{__aclocal}
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure
 %{__make}
 
@@ -49,7 +58,7 @@ install -d $RPM_BUILD_ROOT{/var/log/%{name},%{_sysconfdir}}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-cp src/sudosh.conf $RPM_BUILD_ROOT%{_sysconfdir}
+#cp src/sudosh.conf $RPM_BUILD_ROOT%{_sysconfdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
