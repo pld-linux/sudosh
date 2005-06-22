@@ -58,8 +58,6 @@ install -d $RPM_BUILD_ROOT{/var/log/%{name},%{_sysconfdir}}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-#cp src/sudosh.conf $RPM_BUILD_ROOT%{_sysconfdir}
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
