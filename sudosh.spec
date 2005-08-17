@@ -1,12 +1,12 @@
 Summary:	sudo shell
 Summary(pl):	Pow³oka sudo
 Name:		sudosh
-Version:	1.8.2
+Version:	1.6.3
 Release:	0.1
 License:	Open Software License v2.0
 Group:		Applications/Shells
 Source0:	http://dl.sourceforge.net/sudosh/%{name}-%{version}.tar.gz
-# Source0-md5:	7121efdac817e4a27111869f27fabea0
+# Source0-md5:	700ee8c6060c1512ac0c2731b5727cc6
 Patch0:		%{name}-DESTDIR.patch
 URL:		http://sourceforge.net/projects/sudosh/
 BuildRequires:	autoconf
