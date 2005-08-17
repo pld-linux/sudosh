@@ -2,16 +2,12 @@ Summary:	sudo shell
 Summary(pl):	Pow³oka sudo
 Name:		sudosh
 Version:	1.6.3
-Release:	0.1
+Release:	0.2
 License:	Open Software License v2.0
 Group:		Applications/Shells
 Source0:	http://dl.sourceforge.net/sudosh/%{name}-%{version}.tar.gz
 # Source0-md5:	700ee8c6060c1512ac0c2731b5727cc6
-Patch0:		%{name}-DESTDIR.patch
 URL:		http://sourceforge.net/projects/sudosh/
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	libtool
 Requires(post,preun):	sed >= 4.0
 Requires(post):	grep
 Requires:	sudo
@@ -41,19 +37,15 @@ wej¶cie i wyj¶cie, wej¶cie z klawiatury i informacje o czasie - tak,
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
-%{__aclocal}
-%{__autoconf}
-%{__autoheader}
-%{__automake}
 %configure
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/var/log/%{name},%{_sysconfdir}}
+
+install -d $RPM_BUILD_ROOT/var/log/%{name}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -78,6 +70,5 @@ fi
 %defattr(644,root,root,755)
 %doc AUTHORS COPYING ChangeLog NEWS PLATFORMS README
 %attr(755,root,root) %{_bindir}/*
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}.conf
-%{_mandir}/man[158]/*
+%{_mandir}/man[18]/*
 %attr(1733,root,root) %dir /var/log/%{name}
