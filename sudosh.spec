@@ -2,7 +2,7 @@ Summary:	sudo shell
 Summary(pl):	Pow³oka sudo
 Name:		sudosh
 Version:	1.6.3
-Release:	0.2
+Release:	1
 License:	Open Software License v2.0
 Group:		Applications/Shells
 Source0:	http://dl.sourceforge.net/sudosh/%{name}-%{version}.tar.gz
