@@ -1,12 +1,13 @@
 Summary:	sudo shell
 Summary(pl):	Pow³oka sudo
 Name:		sudosh
-Version:	1.8.2
+# NB! read changelog before attempting to upgrade to 1.8.x series
+Version:	1.6.3
 Release:	1
 License:	Open Software License v2.0
 Group:		Applications/Shells
 Source0:	http://dl.sourceforge.net/sudosh/%{name}-%{version}.tar.gz
-# Source0-md5:	7121efdac817e4a27111869f27fabea0
+# Source0-md5:	700ee8c6060c1512ac0c2731b5727cc6
 URL:		http://sourceforge.net/projects/sudosh/
 Requires(post,preun):	sed >= 4.0
 Requires(post):	grep
@@ -45,11 +46,9 @@ wej¶cie i wyj¶cie, wej¶cie z klawiatury i informacje o czasie - tak,
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT{/var/log/%{name},%{_sysconfdir},%{_bindir}}
-install src/sudosh.conf $RPM_BUILD_ROOT%{_sysconfdir}/
-install src/sudosh $RPM_BUILD_ROOT%{_bindir}/
+install -d $RPM_BUILD_ROOT/var/log/%{name}
 
-%{__make} install-man \
+%{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
@@ -71,7 +70,6 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS COPYING ChangeLog NEWS PLATFORMS README
-%attr(444,root,root) %{_sysconfdir}/sudosh.conf
 %attr(755,root,root) %{_bindir}/*
-%{_mandir}/man[158]/*
+%{_mandir}/man[18]/*
 %attr(1733,root,root) %dir /var/log/%{name}
