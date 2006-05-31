@@ -3,7 +3,7 @@ Summary(pl):	Pow³oka sudo
 Name:		sudosh
 # NB! read changelog before attempting to upgrade to 1.8.x series
 Version:	1.6.3
-Release:	1
+Release:	1.1
 License:	Open Software License v2.0
 Group:		Applications/Shells
 Source0:	http://dl.sourceforge.net/sudosh/%{name}-%{version}.tar.gz
@@ -14,7 +14,6 @@ Requires(post):	grep
 Requires:	sudo
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_bindir		/bin
 %define		_shell		%{_bindir}/%{name}
 
 %description
