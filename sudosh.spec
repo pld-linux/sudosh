@@ -9,12 +9,13 @@ Group:		Applications/Shells
 Source0:	http://dl.sourceforge.net/sudosh/%{name}-%{version}.tar.gz
 # Source0-md5:	700ee8c6060c1512ac0c2731b5727cc6
 URL:		http://sourceforge.net/projects/sudosh/
-Requires(post,preun):	sed >= 4.0
+Requires(preun):	sed >= 4.0
 Requires(post):	grep
 Requires:	sudo
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_bindir		/bin
+%define		_shell		%{_bindir}/%{name}
 
 %description
 sudosh is a filter that takes advantage of PTY devices in order to sit
@@ -57,14 +58,14 @@ rm -rf $RPM_BUILD_ROOT
 %post
 if [ ! -f /etc/shells ]; then
 	umask 022
-	echo '%{_bindir}/sudosh' >> /etc/shells
+	echo '%{_shell}' > /etc/shells
 else
-	grep -q '^%{_bindir}/sudosh$' /etc/shells || echo '%{_bindir}/sudosh' >> /etc/shells
+	grep -q '^%{_shell}$' /etc/shells || echo '%{_shell}' >> /etc/shells
 fi
 
 %preun
 if [ "$1" = "0" ]; then
-	sed -i -e '/^%(echo %{_bindir} | sed -e 's,/,\\/,g')\/sudosh$/d' /etc/shells
+	%{__sed} -i -e '/^%(echo %{_shell} | sed -e 's,/,\\/,g')$/d' /etc/shells
 fi
 
 %files
