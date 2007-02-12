@@ -1,5 +1,5 @@
 Summary:	sudo shell
-Summary(pl):	Pow³oka sudo
+Summary(pl.UTF-8):   PowÅ‚oka sudo
 Name:		sudosh
 # NB! read changelog before attempting to upgrade to 1.8.x series
 Version:	1.6.3
@@ -26,15 +26,15 @@ play back the sessions as they were originally recorded. It records
 all input/output, keyboard input, and timing information so that the
 session can be played back in the original format.
 
-%description -l pl
-sudosh to filtr wykorzystuj±cy zalety urz±dzeñ PTY, aby po¶redniczyæ
-miêdzy klawiatur± u¿ytkownika a programem, w tym wypadku pow³ok±.
-Zosta³ zaprojektowany w szczególno¶ci do u¿ywania z programem sudo i
-umo¿liwia wywo³ywanie pow³oki roota z logowaniem. Jest zasadniczo
-"kamer±" zapisuj±c± sesje pow³oki roota; ma tak¿e mo¿liwo¶æ
-odtwarzania sesji tak, jak zosta³y oryginalnie zapisane. Zapisuje ca³e
-wej¶cie i wyj¶cie, wej¶cie z klawiatury i informacje o czasie - tak,
-¿e sesje mo¿na odtwarzaæ w oryginalnej postaci.
+%description -l pl.UTF-8
+sudosh to filtr wykorzystujÄ…cy zalety urzÄ…dzeÅ„ PTY, aby poÅ›redniczyÄ‡
+miÄ™dzy klawiaturÄ… uÅ¼ytkownika a programem, w tym wypadku powÅ‚okÄ….
+ZostaÅ‚ zaprojektowany w szczegÃ³lnoÅ›ci do uÅ¼ywania z programem sudo i
+umoÅ¼liwia wywoÅ‚ywanie powÅ‚oki roota z logowaniem. Jest zasadniczo
+"kamerÄ…" zapisujÄ…cÄ… sesje powÅ‚oki roota; ma takÅ¼e moÅ¼liwoÅ›Ä‡
+odtwarzania sesji tak, jak zostaÅ‚y oryginalnie zapisane. Zapisuje caÅ‚e
+wejÅ›cie i wyjÅ›cie, wejÅ›cie z klawiatury i informacje o czasie - tak,
+Å¼e sesje moÅ¼na odtwarzaÄ‡ w oryginalnej postaci.
 
 %prep
 %setup -q
