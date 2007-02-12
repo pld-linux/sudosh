@@ -1,5 +1,5 @@
 Summary:	sudo shell
-Summary(pl.UTF-8):   Powłoka sudo
+Summary(pl.UTF-8):	Powłoka sudo
 Name:		sudosh
 # NB! read changelog before attempting to upgrade to 1.8.x series
 Version:	1.6.3
