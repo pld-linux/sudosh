@@ -2,19 +2,22 @@ Summary:	sudo shell
 Summary(pl.UTF-8):	Powłoka sudo
 Name:		sudosh
 # NB! read changelog before attempting to upgrade to 1.8.x series
-Version:	1.6.3
-Release:	1.1
+Version:	2.0.00
+Release:	0.1
 License:	Open Software License v2.0
 Group:		Applications/Shells
 Source0:	http://dl.sourceforge.net/sudosh/%{name}-%{version}.tar.gz
-# Source0-md5:	700ee8c6060c1512ac0c2731b5727cc6
+# Source0-md5:	bc810e73d615821de0c7ceb716212428
+Patch0:		%{name}-Makefile.am-install.patch
 URL:		http://sourceforge.net/projects/sudosh/
+BuildRequires:	autoconf
+BuildRequires:	automake
 Requires(preun):	sed >= 4.0
 Requires(post):	grep
 Requires:	sudo
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_shell		%{_bindir}/%{name}
+%define		_shell		%{_bindir}/eash
 
 %description
 sudosh is a filter that takes advantage of PTY devices in order to sit
@@ -37,16 +40,22 @@ wejście i wyjście, wejście z klawiatury i informacje o czasie - tak,
 że sesje można odtwarzać w oryginalnej postaci.
 
 %prep
-%setup -q
+%setup -q -n eas-%{version}
+%patch -p0
 
 %build
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__automake}
+
 %configure
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT/var/log/%{name}
+install -d $RPM_BUILD_ROOT{/var/log/%{name},%{_bindir},%{_sysconfdir}/certs}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -69,7 +78,13 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING ChangeLog NEWS PLATFORMS README
+%doc AUTHORS COPYING ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/*
-%{_mandir}/man[18]/*
+%attr(755,root,root) %{_sbindir}/*
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/certs/*.pem
+%dir %{_sysconfdir}/css
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/css/*.css 
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/easd_config
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/eash_config
+
 %attr(1733,root,root) %dir /var/log/%{name}
