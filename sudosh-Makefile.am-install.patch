@@ -1,0 +1,17 @@
+--- src/Makefile.am~	2006-03-28 07:41:21.000000000 +0200
++++ src/Makefile.am	2007-04-24 13:23:46.000000000 +0200
+@@ -61,13 +61,4 @@
+ 	test -f "$(sysconfdir)/css/report.css" || ( cp report.css "$(DESTDIR)$(sysconfdir)/css/report.css" && chmod 400 "$(DESTDIR)$(sysconfdir)/css/report.css" )
+ 	test -f "$(sysconfdir)/css/detailed.css" || ( cp detailed.css "$(DESTDIR)$(sysconfdir)/css/detailed.css" && chmod 400 "$(DESTDIR)$(sysconfdir)/css/detailed.css" )
+ 
+-config-perms:
+-	test -f "$(bindir)/eash" && ( chown 0:0 "$(bindir)/eash" && chmod 4555 "$(bindir)/eash" )
+-	test -f "$(bindir)/eas_test_pty" && ( chown 0:0 "$(bindir)/eas_test_pty" && chmod 4555 "$(bindir)/eas_test_pty" )
+-
+-	test -f "$(sbindir)/easd" && ( chown 0:0 "$(sbindir)/easd" && chmod 500 "$(sbindir)/easd" )
+-	test -f "$(sbindir)/eas_dbtool" && ( chown 0:0 "$(sbindir)/eas_dbtool" && chmod 500 "$(sbindir)/eas_dbtool" )
+-	test -f "$(sbindir)/eas_replay" && ( chown 0:0 "$(sbindir)/eas_replay" && chmod 500 "$(sbindir)/eas_replay" )
+-	test -f "$(sbindir)/eas_report" && ( chown 0:0 "$(sbindir)/eas_report" && chmod 500 "$(sbindir)/eas_report" )
+-
+-install: install-am config-setup config-perms
++install: install-am config-setup
