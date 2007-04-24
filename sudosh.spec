@@ -12,6 +12,7 @@ Patch0:		%{name}-Makefile.am-install.patch
 URL:		http://sourceforge.net/projects/sudosh/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	libtool
 Requires(preun):	sed >= 4.0
 Requires(post):	grep
 Requires:	sudo
